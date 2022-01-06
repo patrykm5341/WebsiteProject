@@ -170,7 +170,12 @@ function detailAnimation() {
     const slideTl = gsap.timeline({ defaults: { duration: 1 } });
     let nextSlide = slides.length - 1 === index ? "end" : slides[index + 1];
     const nextImg = nextSlide.querySelector("img");
-    slideTl.fromTo(slide, { opacity: 1 }, { opacity: 0 });
+    const nextText = nextSlide.querySelector(".fashion-text");
+    slideTl.fromTo(slide, { opacity: 1, scale: 1 }, { opacity: 0, scale: 0.5 });
+    // slideTl.fromTo(slide, { opacity: 1 }, { opacity: 0 });
+    slideTl.fromTo(nextSlide, { opacity: 0 }, { opacity: 1 }, "-=1");
+    slideTl.fromTo(nextImg, { x: "50%" }, { x: "0%" });
+    slideTl.fromTo(nextText, { x: "-40%" }, { x: "0%" }, "-=1");
 
     //Scene
     detailScene = new ScrollMagic.Scene({
